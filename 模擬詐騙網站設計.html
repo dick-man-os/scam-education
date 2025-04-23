@@ -1,0 +1,244 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸運贏家娛樂城 - 輕鬆贏大獎</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .header {
+            background-color: #ff4500;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .banner {
+            background-color: #ffd700;
+            text-align: center;
+            padding: 30px;
+            font-size: 24px;
+        }
+        .section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .success-stories {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .story {
+            width: 45%;
+            margin: 10px;
+            text-align: center;
+        }
+        .story img {
+            max-width: 100%;
+            height: auto;
+        }
+        .games, .promotions {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .game, .promotion部分顯示的內容已被限制。
+
+        .game, .promotion {
+            width: 30%;
+            margin: 10px;
+            text-align: center;
+        }
+        .cta-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #ff4500;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .cta-button:hover {
+            background-color: #e03e00;
+        }
+    </style>
+</head>
+<body>
+    <!-- 標題 -->
+    <div class="header">
+        <h1>幸運贏家娛樂城 - 輕鬆贏大獎，改變您的人生！</h1>
+    </div>
+
+    <!-- 橫幅 -->
+    <div class="banner">
+        立即註冊，獲取1000元迎新獎金！限時優惠，現在行動！
+    </div>
+
+    <!-- 成功故事 -->
+    <div class="section">
+        <h2>我們的成功故事</h2>
+        <div class="success-stories">
+            <div class="story">
+                <h3>張先生一晚贏得5萬元！</h3>
+                <p>「昨晚在百家樂桌上，我贏得了5萬元！這太不可思議了！」</p>
+                <img src="https://via.placeholder.com/300x200?text=張先生持大額支票" alt="張先生贏得大獎">
+            </div>
+            <div class="story">
+                <h3>李小姐贏得台北豪宅！</h3>
+                <p>「我在老虎機上贏得200萬元，用這筆錢在台北買了豪宅！」</p>
+                <img src="https://via.placeholder.com/300x200?text=李小姐與豪宅" alt="李小姐與豪宅">
+            </div>
+        </div>
+    </div>
+
+    <!-- 關於我們 -->
+    <div class="section">
+        <h2>關於我們</h2>
+        <p>幸運贏家娛樂城是亞洲領先的在線娛樂平台，提供最真實的賭場體驗。我們擁有專業的荷官團隊，先進的技術支持，24小時客服服務，確保您享有最佳的遊戲體驗。加入我們，立即開始您的贏家之旅！</p>
+    </div>
+
+    <!-- 遊戲 -->
+    <div class="section">
+        <h2>熱門遊戲</h2>
+        <div class="games">
+            <div class="game">
+                <h3>百家樂</h3>
+                <p>經典的賭場遊戲，簡單易學，高勝率！</p>
+                <img src="https://via.placeholder.com/200x150?text=百家樂" alt="百家樂">
+            </div>
+            <div class="game">
+                <h3>老虎機</h3>
+                <p>多種主題，巨額獎金等您來拿！</p>
+                <img src="https://via.placeholder.com/200x150?text=老虎機" alt="老虎機">
+            </div>
+            <div class="game">
+                <h3>輪盤</h3>
+                <p>刺激的轉盤遊戲，幸運數字帶您贏大獎！</p>
+                <img src="https://via.placeholder.com/200x150?text=輪盤" alt="輪盤">
+            </div>
+        </div>
+    </div>
+
+    <!-- 優惠活動 -->
+    <div class="section">
+        <h2>優惠活動</h2>
+        <div class="promotions">
+            <div class="promotion">
+                <h3>首次存款獎勵</h3>
+                <p>存1000送1000，100%匹配獎金！</p>
+            </div>
+            <div class="promotion">
+                <h3>每日返水</h3>
+                <p>最高0.8%無上限返水！</p>
+            </div>
+            <div class="promotion">
+                <h3>推薦好友</h3>
+                <p>每推薦一位好友，獲取500元獎金！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 行動呼籲按鈕 -->
+    <a href="scam_reveal.html" class="cta-button">立即註冊</a>
+</body>
+</html>
+
+<!-- 揭示頁面 -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你被詐騙了！</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff4500;
+        }
+        .tips {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>恭喜你，你被詐騙了！</h1>
+        <p>這是一個模擬詐騙網站，旨在教育您提防此類詐騙。請記住，如果某個機會看起來好得令人難以置信，那麼它很可能是假的。保護您的個人信息和財務安全。</p>
+        <div class="tips">
+            <h2>如何識別詐騙網站</h2>
+            <ul>
+                <li><strong>檢查網址</strong>：確保網址正確，沒有拼寫錯誤。</li>
+                <li><strong>尋找聯繫信息</strong>：正規網站會有詳細的聯繫方式。</li>
+                <li><strong>注意語言和設計</strong>：詐騙網站常有語法錯誤和低質量的設計。</li>
+                <li><strong>謹慎對待過於優厚的優惠</strong>：如果優惠看起來太好，可能是陷阱。</li>
+                <li><strong>保護個人信息</strong>：不要輕易提供個人或財務信息。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
